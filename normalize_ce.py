@@ -34,6 +34,7 @@ def normalize_ce(text, eliminate_nonchechen_diacritics=True):
         '1': 'Ӏ',
         'r': 'г',
         'I': 'Ӏ',
+        'i': 'Ӏ',
     }
     if eliminate_nonchechen_diacritics:
         text = remove_accents(text)
