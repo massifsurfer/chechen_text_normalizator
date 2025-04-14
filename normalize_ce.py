@@ -32,18 +32,18 @@ def normalize_ce(text, eliminate_nonchechen_diacritics=True):
         'y': 'у',
         'l': 'Ӏ',
         '1': 'Ӏ',
+        'r': 'г',
         'I': 'Ӏ',
-        'i': 'Ӏ',
     }
     if eliminate_nonchechen_diacritics:
         text = remove_accents(text)
 
-    small_outdated_palochka = "ӏ"
+    wrong_palochka = "[ӏІіЇї]"
     standard_palochka = 'Ӏ'
-    text = text.replace(small_outdated_palochka, standard_palochka)
+    text = re.sub(wrong_palochka, standard_palochka, text)
 
 
     for latin, cyrillic in letter_latin.items():
-        text = re.sub(f"{latin}(?=[а-яА-ЯӀ])|(?<=[а-яА-ЯӀ]){latin}", cyrillic, text)
+        text = re.sub(f"{latin}(?=[а-яА-ЯӀё])|(?<=[а-яА-ЯӀё]){latin}", cyrillic, text)
     
     return text
